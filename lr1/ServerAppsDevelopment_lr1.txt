@@ -1,0 +1,297 @@
+public class Main
+{
+    // Базовый класс
+    public class Bus {
+        private String driverName;
+        private int busNum;
+        private int routeNum;
+        private String marka;
+        private int startYear;
+        private int probeg;
+        
+        // Конструкторы базового класса
+        protected Bus() {
+            driverName = "Default";
+            busNum = 0;
+            routeNum = 0;
+            marka = "Default";
+            startYear = 0;
+            probeg = 0;
+        }
+        protected Bus(
+            String pDriverName,
+            int pBusNum,
+            int pRouteNum,
+            String pMarka,
+            int pStartYear,
+            int pProbeg
+        ) {
+            driverName = pDriverName;
+            busNum = pBusNum;
+            routeNum = pRouteNum;
+            marka = pMarka;
+            startYear = pStartYear;
+            probeg = pProbeg;
+        }
+        
+        // геттеры и сеттеры базового класса
+        public setDriverName(String newDriverName) {
+            driverName = newDriverName;
+        }
+        public setBusNum(String newBusNum) {
+            busNum = newBusNum;
+        }
+        public setRouteNum(String newRouteNum) {
+            routeNum = newRouteNum
+        }
+        public setMarka(String newMarka) {
+            marka = newMarka
+        }
+        public setStartYear(String newStartYear) {
+            startYear = newStartYear
+        }
+        public setProbeg(String newProbeg) {
+            probeg = newProbeg
+        }
+        public String getDriverName() {
+            return driverName;
+        } 
+        public int getBusNum() {
+            return busNum;
+        } 
+        public int getRouteNum() {
+            return routeNum;
+        } 
+        public String getMarka() {
+            return marka;
+        } 
+        public int getStartYear() {
+            return startYear;
+        } 
+        public int getProbeg() {
+            return probeg;
+        } 
+        
+        // Сравнительные методы
+        public String toString() {
+            return "" + driverName +
+                busNum +
+                routeNum +
+                marka +
+                startYear +
+                probeg
+        }
+        public String hashCode() {
+            return this.toString().hashCode()
+        }
+    }
+    
+    // Производный класс 1
+    public class GorodskoyBus extends Bus {
+        public String type;
+        
+        // Конструкторы производного класса 1
+        public GorodskoyBus() {
+            super()
+            this.type = "Gorodskoy_Default"
+        }
+        public GorodskoyBus(
+            String pDriverName,
+            int pBusNum,
+            int pRouteNum,
+            String pMarka,
+            int pStartYear,
+            int pProbeg
+        ) {
+            super(pDriverName, pBusName, pRouteNum, pMarka, pStartYear, pProbeg)
+            this.type = "Gorodskoy"
+        }
+        
+        // геттеры и сеттеры производного класса 1
+        public setDriverName(String newDriverName) {
+            super.setDriverName(newDriverName);
+        }
+        public setBusNum(int newBusNum) {
+            super.setBusNum(newBusNum);
+        }
+        public setRouteNum(int newRouteNum) {
+            super.setRouteNum(newRouteNum);
+        }
+        public setMarka(String newMarka) {
+            super.setMarka(newMarka);
+        }
+        public setStartYear(int newStartYear) {
+            super.setStartYear(newStartYear);
+        }
+        public setProbeg(int newProbeg) {
+            super.setProbeg(newProbeg);
+        }
+        public String getDriverName() {
+            return super.driverName;
+        } 
+        public int getBusNum() {
+            return super.busNum;
+        } 
+        public int getRouteNum() {
+            return super.routeNum;
+        } 
+        public String getMarka() {
+            return super.marka;
+        } 
+        public int getStartYear() {
+            return super.startYear;
+        } 
+        public int getProbeg() {
+            return super.probeg;
+        } 
+        
+        // Переопределение сравнительных методов
+        public String toString() {
+            return super.toString() + this.type
+        }
+        public String hashCode() {
+            return this.toString().hashCode()
+        }
+    }
+    
+    // Производный класс 2
+    public class MezhdugorodniyBus extends Bus {
+        public String type;
+        
+        // Конструкторы производного класса 2
+        public MezhdugorodniyBus() {
+            super()
+            this.type = "Mezhdugorodniy_Default"
+        }
+        public GorodskoyBus(
+            String pDriverName,
+            int pBusNum,
+            int pRouteNum,
+            String pMarka,
+            int pStartYear,
+            int pProbeg
+        ) {
+            super(pDriverName, pBusName, pRouteNum, pMarka, pStartYear, pProbeg)
+            this.type = "Mezhdugorodniy"
+        }
+        
+        // геттеры и сеттеры производного класса 2
+        public setDriverName(String newDriverName) {
+            super.setDriverName(newDriverName);
+        }
+        public setBusNum(int newBusNum) {
+            super.setBusNum(newBusNum);
+        }
+        public setRouteNum(int newRouteNum) {
+            super.setRouteNum(newRouteNum);
+        }
+        public setMarka(String newMarka) {
+            super.setMarka(newMarka);
+        }
+        public setStartYear(int newStartYear) {
+            super.setStartYear(newStartYear);
+        }
+        public setProbeg(int newProbeg) {
+            super.setProbeg(newProbeg);
+        }
+        public String getDriverName() {
+            return super.driverName;
+        } 
+        public int getBusNum() {
+            return super.busNum;
+        } 
+        public int getRouteNum() {
+            return super.routeNum;
+        } 
+        public String getMarka() {
+            return super.marka;
+        } 
+        public int getStartYear() {
+            return super.startYear;
+        } 
+        public int getProbeg() {
+            return super.probeg;
+        } 
+        
+        // Переопределение сравнительных методов
+        public String toString() {
+            return super.toString() + this.type
+        }
+        public String hashCode() {
+            return this.toString().hashCode()
+        }
+    }
+    
+    // Группа объектов
+    public class BusCollection {
+        public ArrayList<Bus> busCollection = null;
+        
+        // Конструкторы коллекций из одного или более начальных элементов
+        public BusCollection(Bus bus) {
+            busCollection.add(bus)
+        }
+        public BusCollection(ArrayList<Bus> busArray) {
+            for(Bus bus : busArray) {
+                busCollection.add()
+            }
+        }
+        
+        // Сравнение и выборка данных
+        // a) список автобусов для заданного номера маршрута
+        public ArrayList<Bus> ByRouteNum(int num) {
+            ArrayList<Bus> result;
+            for (Bus bus : ArrayList) {
+                if (bus.getRouteNum() == num) {
+                    result.add(bus);
+                }
+            }
+            return result;
+        }
+        // б) список автобусов, которые эксплуатируются больше заданного срока
+        public ArrayList<Bus> YearsMoreThan(int years) {
+            ArrayList<Bus> result;
+            for (Bus bus : ArrayList) {
+                if (CURRENT_YEAR - bus.getStartYear() > years) {
+                    result.add(bus);
+                }
+            }
+            return result;
+        }
+        // в) список автобусов, пробег у которых больше заданного растояния
+        public ArrayList<Bus> ProbegMoreThan(int distance) {
+            ArrayList<Bus> result;
+            for (Bus bus : ArrayList) {
+                if (bus.getProbeg() > distance) {
+                    result.add(bus);
+                }
+            }
+            return result;
+        }
+        
+        public boolean Compare(Bus first, Bus second) {
+            if (first.hashCode() == second.hashCode()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    
+	public static void main(String[] args) {
+		GorodskoyBus gorodskoyBus1 = new GorodskoyBus("Николай Водителев", 14, 57, "Marka1", 2016, 200);
+		GorodskoyBus gorodskoyBus2 = new GorodskoyBus("Имя Фамилиев", 31, 33, "Marka2", 2016, 180);
+		Mezhdugorodniy mezhdugorodniyBus1 = new MezhdugorodniyBus("Айдер Османов", 28, 56, "Marka3", 2017, 160);
+		Mezhdugorodniy mezhdugorodniyBus2 = new MezhdugorodniyBus("Рефат Автобусов", 19, 64, "Marka4", 2018, 145);
+		
+		busCollection busCollection1 = new BusCollection(ArrayList<Bus>.of(gorodskoyBus1, gorodskoyBus2, mezhdugorodniyBus1, mezhdugorodniyBus2));
+		System.out.println(busCollection1.Compare(busCollection1[0], busCollection1[1]).toString());
+	}
+}
+
+
+
+
+
+
+
+
