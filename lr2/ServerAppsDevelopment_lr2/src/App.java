@@ -3,6 +3,8 @@ import java.util.List;
 
 public class App {
 	abstract static class MobileTariff {
+        static int MobileTariffsTotal = 0;
+
         private String name;
 		private int price;
 		private int minutes;
@@ -18,6 +20,7 @@ public class App {
             this.price = pPrice;
             this.minutes = pMinutes;
             this.gigabytes = pGigabytes;
+            MobileTariffsTotal++;
         }
 
         public String getName() {
@@ -47,6 +50,8 @@ public class App {
 	}
 
 	public static class FixedTariff extends MobileTariff {
+        static int FixedTariffsTotal = 0;
+        
         public FixedTariff(
             String pName,
             int pPrice,
@@ -54,6 +59,7 @@ public class App {
             int pGigabytes
         ) {
             super(pName, pPrice, pMinutes, pGigabytes);
+            FixedTariffsTotal++;
         }
         
         public String getName() {
@@ -71,6 +77,8 @@ public class App {
 	}
 
 	public static class CustomizableTariff extends MobileTariff {
+        static int CustomizableTariffsTotal = 0;
+
         public CustomizableTariff(
             String pName,
             int pPrice,
@@ -78,6 +86,7 @@ public class App {
             int pGigabytes
         ) {
             super(pName, pPrice, pMinutes, pGigabytes);
+            CustomizableTariffsTotal++;
         }
         
         public String getName() {
@@ -122,6 +131,7 @@ public class App {
         }
 
         public void Show() {
+            System.out.println("Список всех тарифов:");
             String result = "";
             for (var tariff : tariffsList) {
                 result +=
@@ -147,6 +157,7 @@ public class App {
 
         // нахождение тарифа по диапазону цены
         public List<MobileTariff> findByPrice(int min, int max) {
+            System.out.println("Перечень тарифов по стоимости в диапазоне от " + min + " до " + max + " включительно:");
             List<MobileTariff> result = new ArrayList<>();
             for (var tariff : tariffsList) {
                 if (tariff.getPrice() >= min && tariff.getPrice() <= max) {
@@ -158,6 +169,7 @@ public class App {
 
         // нахождение тарифа по диапазону минут
         public List<MobileTariff> findByMinutes(int min, int max) {
+            System.out.println("Перечень тарифов по количеству минут в диапазоне от " + min + " до " + max + " включительно:");
             List<MobileTariff> result = new ArrayList<>();
             for (var tariff : tariffsList) {
                 if (tariff.getMinutes() >= min && tariff.getMinutes() <= max) {
@@ -169,6 +181,7 @@ public class App {
 
         // нахождение тарифа по диапазону гигабайтов
         public List<MobileTariff> findByGigabytes(int min, int max) {
+            System.out.println("Перечень тарифов по количеству гигабайтов в диапазоне от " + min + " до " + max + " включительно:");
             List<MobileTariff> result = new ArrayList<MobileTariff>();
             for (var tariff : tariffsList) {
                 if (tariff.getGigabytes() >= min && tariff.getGigabytes() <= max) {
@@ -177,12 +190,19 @@ public class App {
             }
             return result;
         }
+
+        // сортировка по цене тарифа
+        public void SortByPrice() {
+            List<MobileTariff> sortedTariffsList = tariffsList;
+            sortedTariffsList.sort((t1, t2) -> Integer.valueOf(t1.getPrice()).compareTo(Integer.valueOf(t2.getPrice())));
+            MobileTariffsList.ShowResult(sortedTariffsList);
+        }
     }
 
     public static void main(String[] args) throws Exception {
-        FixedTariff fTariff1 = new FixedTariff("Basic", 200, 20, 2);
-        FixedTariff fTariff2 = new FixedTariff("Double", 350, 40, 4);
-        FixedTariff fTariff3 = new FixedTariff("Comfort", 700, 150, 15);
+        FixedTariff fTariff1 = new FixedTariff("Tariff1", 200, 20, 2);
+        FixedTariff fTariff2 = new FixedTariff("Tariff2", 350, 40, 4);
+        FixedTariff fTariff3 = new FixedTariff("Tariff3", 700, 150, 15);
         CustomizableTariff cTariff1 = new CustomizableTariff("Example1", 500, 60, 10);
         CustomizableTariff cTariff2 = new CustomizableTariff("Example2", 650, 200, 8);
         
@@ -193,8 +213,15 @@ public class App {
         list.Add(cTariff2);
         list.Show();
 
+        System.out.println(FixedTariff.FixedTariffsTotal + " фиксированных тарифов");
+        System.out.println(CustomizableTariff.CustomizableTariffsTotal + " настраиваемых тарифов");
+        System.out.println(MobileTariff.MobileTariffsTotal + " - общее число тарифов");
+        System.out.println();
+
         MobileTariffsList.ShowResult(list.findByPrice(300, 600));
         MobileTariffsList.ShowResult(list.findByMinutes(60, 250));
         MobileTariffsList.ShowResult(list.findByGigabytes(0, 5));
+
+        list.SortByPrice();
     }
 }
